@@ -6,51 +6,65 @@
 /*   By: lmaujean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 13:36:30 by lmaujean          #+#    #+#             */
-/*   Updated: 2021/01/28 16:07:08 by lmaujean         ###   ########.fr       */
+/*   Updated: 2021/01/30 15:06:26 by lmaujean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-
-void	ft_strlen(char *str)
+int		ft_strlen(char *str)
 {
 	int i;
 
-	while(str[i] != '\0')
+	while (str[i] != '\0')
 	{
-		i++
+		i++;
 	}
 	return (i);
 }
 
-void	ft_strcpy(char *dest, char *src)
+char	*ft_strcat(char *dest, char *src)
 {
 	int i;
+	int k;
 
 	i = 0;
-	while(src[i] != '\0')
+	while (dest[i] != '\0')
+		i++;
+	k = 0;
+	while (src[k] != '\0')
 	{
-		dest[i] = src[i];
+		dest[i + k] = src[k];
+		k++;
 	}
-	dest[i] = '\0';
+	dest[i + k] = '\0';
 	return (dest);
 }
 
-
-
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
+	char	*dest;
+	int		i;
+	int		j;
 
-	char *dest;
-	int 	 i;
-	int 	 j;	
-		
-	if (!(dest = malloc(sizeof(char) * i + 1)))
+	i = 0;
+	j = 0;
+	while (i < size)
 	{
-		return (NULL);
+		j = j + ft_strlen(strs[i]);
+		i++;
 	}
-	while ()
-
-
+	j = j + (ft_strlen(sep) * (size - 1));
+	if (!(dest = malloc(sizeof(char) * j)))
+		return (NULL);
+	i = 0;
+	dest[0] = 0;
+	while (i <= size)
+	{
+		ft_strcat(dest, strs[i]);
+		if (i != size)
+			ft_strcat(dest, sep);
+		i++;
+	}
+	return (dest);
 }
